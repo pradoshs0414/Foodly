@@ -7,19 +7,18 @@ const  Body =  () => {
   const [rating,setRating] = useState();
   const[restaurantsInfo,setRestaurantsInfo]  = useState([]);
   const [filteredRestaurants,setFilteredRestaurants] = useState([]);
-  const [searchText,setSearchText] = useState();
+  const [searchText,setSearchText] = useState(null);
 
   useEffect(()=>{
-    if(searchText != null){
-      const search =restaurantsInfo.filter((resData)=> resData.info.name.toLowerCase().includes(searchText.toLowerCase()))
-      setFilteredRestaurants(search)
-              
+    let search = restaurantsInfo;
+    if(searchText != null || searchText !=""){
+      search = restaurantsInfo.filter((resData)=> resData.info.name.toLowerCase().includes(searchText.toLowerCase()))
     }
-    else if(rating!=0 && rating!=null){
+    if(rating!=0 && rating!=null){
       console.log(rating)
-      const filter = restaurantsInfo.filter((resData)=>resData.info.avgRating>=rating)
-      setFilteredRestaurants(filter)
+      search = search.filter((resData)=>resData.info.avgRating>=rating)
     }
+    setFilteredRestaurants(search)
   },[searchText,rating])
 
   useEffect(()=>{
