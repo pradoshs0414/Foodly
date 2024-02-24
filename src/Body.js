@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
+import axios from "axios";
 
 const  Body =  () => {
   const [rating,setRating] = useState();
   const[restaurantsInfo,setRestaurantsInfo]  = useState([]);
   const [filteredRestaurants,setFilteredRestaurants] = useState([]);
   const [searchText,setSearchText] = useState();
-
-  useEffect(()=>{
-    fetchData()
-  },[])
 
   useEffect(()=>{
     if(searchText != null){
@@ -25,19 +22,16 @@ const  Body =  () => {
     }
   },[searchText,rating])
 
+  useEffect(()=>{
+    (async function getData(){
+      const responseData = await axios.get('https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.95250&lng=75.71050&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING')
+      resData =responseData?.data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+    setRestaurantsInfo(resData)
+    setFilteredRestaurants(resData)
+    })()
+  },[])
 
 
-  
-
-  const fetchData = async ()=>{
-    const data = await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.95250&lng=75.71050&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
-    const json = await data.json();
-    
-    const fetchData = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-    setRestaurantsInfo(fetchData)
-    setFilteredRestaurants(fetchData)
-
-  }
   return restaurantsInfo.length ===0 ?(<div className="body"><Shimmer/></div>):(
     <div className="body">
       <div id="filters">
