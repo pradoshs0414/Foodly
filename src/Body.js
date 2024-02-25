@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import axios from "axios";
+import ResCard from "./ResCard";
 
 const  Body =  () => {
   const [rating,setRating] = useState();
@@ -11,7 +11,7 @@ const  Body =  () => {
 
   useEffect(()=>{
     let search = restaurantsInfo;
-    if(searchText != null || searchText !=""){
+    if(searchText != null ){
       search = restaurantsInfo.filter((resData)=> resData.info.name.toLowerCase().includes(searchText.toLowerCase()))
     }
     if(rating!=0 && rating!=null){
@@ -56,7 +56,7 @@ const  Body =  () => {
       </div>
       <div className="restaurantCards">
         {
-          filteredRestaurants.map((filRes)=>(<RestaurantCard key={filRes?.info?.id} data = {filRes?.info}/>))
+          filteredRestaurants.map((filRes)=>(<ResCard key={filRes?.info?.id} data = {filRes?.info}/>))
         }
       </div>
     </div>

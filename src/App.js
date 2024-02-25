@@ -6,7 +6,7 @@ import { Route,RouterProvider,createBrowserRouter,createRoutesFromElements } fro
 import About from "./About";
 import ContactUs from "./ContactUs";
 import Layout from "./Layout";
-
+import { ChakraProvider } from '@chakra-ui/react'
 const route = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout/>} >
@@ -32,6 +32,8 @@ const AppLayout = () => {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.Fragment>
+    <ChakraProvider>
     <RouterProvider router={route}/>
+    </ChakraProvider>
   </React.Fragment>
 );
