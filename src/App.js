@@ -7,26 +7,21 @@ import About from "./About";
 import ContactUs from "./ContactUs";
 import Layout from "./Layout";
 import { ChakraProvider } from '@chakra-ui/react'
+import RestaurantMenu from "./RestaurantMenu";
 const route = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout/>} >
       <Route path="" element={<Body/>} />
       <Route path="about" element = {<About/>}/>
       <Route path="contact" element = {<ContactUs/>}/>
+      <Route path="restaurants/:resId" element = {<RestaurantMenu/>}/>
       
 
     </Route>
   )
 )
 
-const AppLayout = () => {
-  return (
-    <div className="app">
-      <Header/>
-      <Body/>
-    </div>
-  );
-};
+
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

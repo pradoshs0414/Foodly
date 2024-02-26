@@ -1,7 +1,6 @@
 import React from "react";
-import { Card, CardBody, Stack, Heading, Text, Image,  Flex, Spacer, HStack, Wrap } from "@chakra-ui/react";
+import { Card, CardBody, Stack, Heading, Text, Image,HStack } from "@chakra-ui/react";
 import { CDN_URL } from "./utils/constant";
-import { px } from "framer-motion";
 
 const ResCard = (props) => {
   const { data } = props;
@@ -20,13 +19,12 @@ const ResCard = (props) => {
           <HStack>
           <Text>{data.avgRating}
           </Text>
-          <Text as='li'>{data.deliveryTime}</Text>
+          <Text as='li'>{data.sla.slaString}</Text>
           </HStack>
           <Text fontSize="md">
             {cuisines.length > 4
               ? cuisines.slice(0, 4).join(" , ")
               : cuisines.join(" , ")}
-              hello
           </Text>
         </Stack>
 
