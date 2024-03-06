@@ -1,35 +1,50 @@
-import React from 'react'
-import {Card,Text, Box,Accordion,AccordionItem,AccordionButton,AccordionPanel,AccordionIcon, HStack, Stack, Heading, MenuDescendantsProvider, Image } from '@chakra-ui/react'
+import React from "react";
+import {
+  Flex,
+  Card,
+  Text,
+  Box,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+  HStack,
+  Stack,
+  Heading,
+  Image,
+  Spacer,
+  Button,
+} from "@chakra-ui/react";
+import ItemCard from "./ItemCard";
 
-const AccordionCard = () => {
+const AccordionCard = (props) => {
+  const {data} = props
+  const finalData = data?.card.card
+  const cardData =  data?.card?.card?.itemCards || data?.card?.card?.categories?.itemCards
+  console.log(finalData)
   return (
-    <Accordion allowToggle>
-  <AccordionItem>
-    <h2>
-      <AccordionButton>
-        <Box as="span" flex='1' textAlign='left'>
-          Section 1 title
-        </Box>
-        <AccordionIcon />
-      </AccordionButton>
-    </h2>
-    <AccordionPanel pb={4}>
-        <HStack >
-        <Stack >
+    <Accordion p={5} allowToggle>
+      <AccordionItem>
+        <h2>
+          <AccordionButton>
+            <Box as="span" flex="1" textAlign="left">
+              {finalData?.title}
+            </Box>
+            <AccordionIcon />
+          </AccordionButton>
+        </h2>
+        <AccordionPanel>
+          {
+          cardData?.map((cardInfo)=>(
+            <ItemCard id={cardInfo?.card?.info?.id} data ={cardInfo?.card?.info}/>
+          ))}
+          
+          
+        </AccordionPanel>
+      </AccordionItem>
+    </Accordion>
+  );
+};
 
-          <Heading as={'h2'} overflow={"hidden"} size={"md"}>Dish Name</Heading>
-          <Text fontSize='s'as={'p'} >Price</Text>
-          <Text fontSize='xs'as={'p'} >Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</Text>
-      </Stack>
-        <Stack>
-        <Image src='ImageSRC' alt='Dish Image'/>
-        
-        </Stack>
-      </HStack>
-    </AccordionPanel>
-  </AccordionItem>
-  </Accordion>
-  )
-}
-
-export default AccordionCard
+export default AccordionCard;

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import axios from "axios";
 import ResCard from "./ResCard";
+import { Link } from "react-router-dom";
 
 const  Body =  () => {
   const [rating,setRating] = useState();
@@ -56,7 +57,16 @@ const  Body =  () => {
       </div>
       <div className="restaurantCards">
         {
-          filteredRestaurants.map((filRes)=>(<ResCard key={filRes?.info?.id} data = {filRes?.info}/>))
+          filteredRestaurants.map((filRes)=>(
+            
+            <Link
+            key={filRes?.info?.id}
+            to={"/restaurants/" + filRes?.info?.id}
+          >
+            
+            <ResCard key={filRes?.info?.id} data = {filRes?.info}/>
+          </Link>
+          ))
         }
       </div>
     </div>
