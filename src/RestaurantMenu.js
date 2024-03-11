@@ -13,24 +13,16 @@ import React, { useState, useEffect } from "react";
 import Accordion from "./AccordionCard";
 import { useParams } from "react-router-dom";
 import AccordionCard from "./AccordionCard";
-import axios from "axios";
-import { MENU_API } from "./utils/constant";
+import useRestaurantMenu from "./utils/useRestaurantMenu";
 
 
 const RestaurantMenu = () => {
   const {resId} = useParams()
   console.log(resId)
-  const [menu,setMenu] = useState()
-  const [resInfo,setResInfo] = useState()
-  useEffect(()=>{
-    (async function getData(){
-      const responseData = await axios.get(MENU_API+resId)
-      const resData = responseData?.data?.data?.cards[0]?.card?.card?.info
-      const menuData = responseData?.data?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards
-      setMenu(menuData)
-      setResInfo(resData)
-    })()
-  },[])
+  const [menu,setMenu,resInfo,setResInfo] = useRestaurantMenu(resId)
+  console.log("Component",resInfo)
+
+
   return (
     <div className="body">
       <Stack p={5}>
@@ -76,7 +68,7 @@ const RestaurantMenu = () => {
           
         }
 })}
-      {console.log(menu)}
+      
       </Box>
       
       

@@ -3,11 +3,11 @@ import Shimmer from "./Shimmer";
 import axios from "axios";
 import ResCard from "./ResCard";
 import { Link } from "react-router-dom";
+import useRestaurantInfo from "./utils/useRestaurantInfo";
 
 const  Body =  () => {
   const [rating,setRating] = useState();
-  const[restaurantsInfo,setRestaurantsInfo]  = useState([]);
-  const [filteredRestaurants,setFilteredRestaurants] = useState([]);
+  const [restaurantsInfo,setRestaurantsInfo,filteredRestaurants,setFilteredRestaurants]=useRestaurantInfo()
   const [searchText,setSearchText] = useState(null);
 
   useEffect(()=>{
@@ -21,18 +21,8 @@ const  Body =  () => {
     }
     setFilteredRestaurants(search)
   },[searchText,rating])
-
-  useEffect(()=>{
-    (async function getData(){
-      const responseData = await axios.get('https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.95250&lng=75.71050&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING')
-      resData =responseData?.data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-    setRestaurantsInfo(resData)
-    setFilteredRestaurants(resData)
-    })()
-  },[])
-
-
-  return restaurantsInfo.length ===0 ?(<div className="body"><Shimmer/></div>):(
+ 
+  return restaurantsInfo?.length ===0 ?(<div className="body"><Shimmer/></div>):(
     <div className="body">
       <div id="filters">
         <div className="searchBox">
@@ -68,6 +58,7 @@ const  Body =  () => {
           </Link>
           ))
         }
+        
       </div>
     </div>
   );
