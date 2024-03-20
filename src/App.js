@@ -8,6 +8,9 @@ import ContactUs from "./ContactUs";
 import Layout from "./Layout";
 import { ChakraProvider } from '@chakra-ui/react'
 import RestaurantMenu from "./RestaurantMenu";
+import { Provider } from "react-redux";
+import store from "./Redux/appStore";
+import ShoppingCart from "./Cart";
 const route = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout/>} >
@@ -15,6 +18,7 @@ const route = createBrowserRouter(
       <Route path="about" element = {<About/>}/>
       <Route path="contact" element = {<ContactUs/>}/>
       <Route path="restaurants/:resId" element = {<RestaurantMenu/>}/>
+      <Route path="cart" element = {<ShoppingCart/>}/>
       
 
     </Route>
@@ -27,8 +31,10 @@ const route = createBrowserRouter(
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.Fragment>
+    <Provider store={store}>
     <ChakraProvider>
     <RouterProvider router={route}/>
     </ChakraProvider>
+    </Provider>
   </React.Fragment>
 );

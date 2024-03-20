@@ -17,6 +17,7 @@ const useRestaurantInfo = ()=>{
         setRestaurantsInfo(resData);
         setFilteredRestaurants(resData)
     }
+    console.log(restaurantsInfo)
     return [restaurantsInfo,setRestaurantsInfo,filteredRestaurants,setFilteredRestaurants]
 }
 

@@ -12,7 +12,7 @@ const Header = () =>{
             <li><NavLink to="/" className="navLinks">Home</NavLink></li>
             <li><NavLink to="/about" className="navLinks">About</NavLink></li>
             <li><NavLink to="/contact" className="navLinks">Contact Us</NavLink></li>
-            <li><NavLink className="navLinks">Cart</NavLink></li>
+            <li><NavLink to="/cart" className="navLinks">Cart</NavLink></li>
             <button
             className="login"
             onClick={() => {

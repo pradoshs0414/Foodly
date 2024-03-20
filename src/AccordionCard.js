@@ -24,7 +24,7 @@ const AccordionCard = (props) => {
   const cardData =  data?.card?.card?.itemCards || data?.card?.card?.categories?.itemCards
   console.log(finalData)
   return (
-    <Accordion p={5} allowToggle>
+    <Accordion p={5} allowToggle allowMultiple={false}>
       <AccordionItem>
         <h2>
           <AccordionButton>

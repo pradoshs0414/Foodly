@@ -20,7 +20,7 @@ const RestaurantMenu = () => {
   const {resId} = useParams()
   console.log(resId)
   const [menu,setMenu,resInfo,setResInfo] = useRestaurantMenu(resId)
-  console.log("Component",resInfo)
+
 
 
   return (
