@@ -11,8 +11,9 @@ const useRestaurantMenu = (resId)=>{
     },[])
    const getData=async()=>{
         const responseData = await axios.get(MENU_API+resId)
-        const resData = responseData?.data?.data?.cards[0]?.card?.card?.info
-        const menuData = responseData?.data?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards
+        console.log(responseData)
+        const resData = responseData?.data?.data?.cards[2]?.card?.card?.info
+        const menuData = responseData?.data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards
         setMenu(menuData)
         setResInfo(resData)
     }

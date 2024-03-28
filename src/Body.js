@@ -47,7 +47,7 @@ const  Body =  () => {
       </div>
       <div className="restaurantCards">
         {
-          filteredRestaurants.map((filRes)=>(
+          filteredRestaurants?.map((filRes)=>(
             
             <Link
             key={filRes?.info?.id}

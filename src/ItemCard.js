@@ -26,7 +26,7 @@ const ItemCard = (props) => {
   return (
     <Flex padding={4}>
             
-            <Stack >
+            <Stack maxW={"2xl"}>
           <Heading as={'h2'} overflow={"hidden"} size={"md"}>{name}</Heading>
           <Text fontSize='s'as={'p'} >₹{price}</Text>
           <Text fontSize='xs'as={'p'} >{description}</Text>

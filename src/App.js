@@ -10,7 +10,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import RestaurantMenu from "./RestaurantMenu";
 import { Provider } from "react-redux";
 import store from "./Redux/appStore";
-import ShoppingCart from "./Cart";
+import ShoppingCart from './Cart'
 const route = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout/>} >
